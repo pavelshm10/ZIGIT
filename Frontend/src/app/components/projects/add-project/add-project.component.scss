@@ -1,12 +1,7 @@
 .deprecated-two-columns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 30px;
-}
-
-.blue-button{
-    background-color: #225c73;
-    color: white;
+    grid-column-gap: 15px;
 }
 
 .deprecated-form-layout {
@@ -18,22 +13,33 @@
     margin-top: 150px;
     height: 500px;
     mat-form-field{
-      padding-bottom: 40px;
-    //   &:last-child {
-    //     padding-bottom: 0px;
-    //   }
+      padding-bottom: 10px;
+      margin-top: 20px;
+      padding-bottom: 10px;
+      width: 300px;
+      border-bottom: 1px solid black;
     }
-  }
-  .form-control{
+    .date-picker-field{
+        padding: 0px;
+        margin: 0px;
+        border-bottom: 1px solid black;
+      }
+    .text-area{
+        margin-top: 50px;
         width: 300px;
-        border-bottom: 1px solid black; 
-}
-.text-area{
-    margin-top: 50px;
-    // margin-left: 200px;
-    width: 300px;
+    }
+    .comment-btn{
+        background-color: white;
+    }
+    .blue-button{
+        background-color: #225c73;
+        color: white;
+    }  
+  }
+
+  .mat-datepicker-content .mat-calendar{
+    margin: auto !important;
 }
 
-.comment-btn{
-    background-color: white;
-}
+
+

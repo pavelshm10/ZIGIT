@@ -10,12 +10,11 @@
     <div class="deprecated-two-columns">
       <div class="row-flex columns-flex">
         <mat-form-field class="form-control">
-          <mat-label>Name</mat-label>
+          <mat-label for="name">Name</mat-label>
           <input
             type="text"
             matInput
             formControlName="name"
-            placeholder="Add project name"
           />
         </mat-form-field>
         <mat-form-field class="form-control">
@@ -36,27 +35,18 @@
             formControlName="img_url"
           />
         </mat-form-field>
-        <button mat-button class="btn comment-btn"><b>Add comment +</b></button>
-        <!-- <mat-form-field class="text-area">
-          <mat-label>Add comment</mat-label>
-          <textarea placeholder="Add comment..." formControlName="comment">
-          </textarea>
-        </mat-form-field> -->
+        <button mat-button class="btn comment-btn" (click)="addComment()"><b>Add comment +</b></button>
       </div>
       <div class="row-flex columns-flex">
         <mat-form-field class="form-control">
           <mat-select placeholder="Choose status" formControlName="status">
-            <mat-option>One</mat-option>
-            <mat-option>Two</mat-option>
-            <mat-option>Three</mat-option>
-            <mat-option>Four</mat-option>
-            <mat-option>Five</mat-option>
+            <mat-option *ngFor="let item of statusList" [value]="item">{{item}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="form-control" appearance="fill">
-          <mat-label>Choose end date</mat-label>
+        <mat-form-field class="date-picker-field" appearance="fill">
+          <!-- <mat-label>Project end date</mat-label> -->
           <input
-            placeholder="Choose date"
+            placeholder="Project end date"
             formControlName="end_date"
             matInput
             [matDatepicker]="picker"

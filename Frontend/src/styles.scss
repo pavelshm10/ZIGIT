@@ -21,11 +21,19 @@ body{
 
 .btn{
     margin-right: 20px !important;
-    margin-top: 20px impo;
+    margin-top: 20px !important;
     width: 150px;
+    cursor: pointer !important;
 }
 
 .font-cursive{
     font-family: cursive;
 }
+
+mat-calendar{
+    margin: auto !important;
+    background-color: 'buttonface' !important
+    ;
+}
+
   

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AddProjectComponent } from './components/projects/add-project/add-project.component';
-import { AddCommentComponent } from './components/projects/add-comment/add-comment.component';
+import { ModalAddCommentComponent } from './components/projects/add-comment/modal-add-comment.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { projectsReducer } from './reducers/projects.reducer';
 import { authReducer } from './reducers/auth.reducer';
@@ -42,7 +42,7 @@ export const effects = [AuthEffects, ProjectEffects];
     LoginComponent,
     ProjectsComponent,
     AddProjectComponent,
-    AddCommentComponent,
+    ModalAddCommentComponent,
     ToasterComponent,
   ],
   imports: [
