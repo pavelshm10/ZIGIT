@@ -48,10 +48,11 @@ export class AddProjectComponent implements OnInit {
   // }
 
   checkValidation() {
-    return true;
+    return false;
   }
 
   submit() {
+    console.log("submit")
     // if (!this.isEdit) {
     //   this.textData = this.textService.getTexts();
     // } else {

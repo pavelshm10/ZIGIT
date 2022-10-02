@@ -1,8 +1,7 @@
 .page-navbar {
     display: flex;
     align-items: center;
-    padding: 10px 0;
-    margin: 0 20px;
+    margin: 50px 20px;
     .add-btn{
         width: 44px;
         height: 44px;
@@ -16,6 +15,10 @@
         margin:auto;
         line-height: 0.5;
     }
+}
+
+.add-project{
+    margin-left: 10px;
 }
 
 .mat-table{

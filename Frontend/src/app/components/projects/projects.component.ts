@@ -63,13 +63,12 @@ export class ProjectsComponent implements OnInit {
     'img_url',
     'comment',
   ];
-  dataSource = ELEMENT_DATA;
+  dataSource= new MatTableDataSource(ELEMENT_DATA); 
   formatData:any = [];
   constructor(private matDialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
     this.updateData();
-    this.dataSource = this.formatData;
   }
 
   updateData(){
@@ -85,6 +84,7 @@ export class ProjectsComponent implements OnInit {
       };
       this.formatData.push(project);
     }); 
+    this.dataSource = this.formatData;
   }
 
   formatDate(date: Date) {

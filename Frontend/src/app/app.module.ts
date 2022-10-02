@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MATERIAL_MODULES } from './modules/material-modules';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const reducers: ActionReducerMap<States> = {
   projects: projectsReducer,
@@ -54,6 +55,7 @@ export const effects = [AuthEffects, ProjectEffects];
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
