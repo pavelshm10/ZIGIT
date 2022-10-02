@@ -17,16 +17,19 @@
     margin: auto;
     margin-top: 150px;
     height: 500px;
-    mat-form-field,
-    .at-custom-form-field,
-    mat-chip-list {
+    mat-form-field{
       padding-bottom: 40px;
-      &:last-child {
-        padding-bottom: 0px;
-      }
+    //   &:last-child {
+    //     padding-bottom: 0px;
+    //   }
     }
   }
-  input, textarea{
-        width: 200px;
+  .form-control{
+        width: 300px;
         border-bottom: 1px solid black; 
-    }
+}
+.text-area{
+    margin-top: 50px;
+    // margin-left: 200px;
+    width: 300px;
+}

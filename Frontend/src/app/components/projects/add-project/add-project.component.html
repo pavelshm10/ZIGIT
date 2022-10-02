@@ -9,7 +9,7 @@
     </h2>
     <div class="deprecated-two-columns">
       <div class="row-flex columns-flex">
-        <mat-form-field>
+        <mat-form-field class="form-control">
           <mat-label>Name</mat-label>
           <input
             type="text"
@@ -18,7 +18,7 @@
             placeholder="Add project name"
           />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="form-control">
           <mat-label>Site map</mat-label>
           <input
             type="text"
@@ -27,24 +27,39 @@
             placeholder="Add site name"
           />
         </mat-form-field>
-        <mat-form-field>
-            <mat-label>Add image</mat-label>
-            <input  placeholder="Add image" type="text" matInput formControlName="img_url" />
-          </mat-form-field>
+        <mat-form-field class="form-control">
+          <mat-label>Add image</mat-label>
+          <input
+            placeholder="Add image"
+            type="text"
+            matInput
+            formControlName="img_url"
+          />
+        </mat-form-field>
+        <mat-form-field class="text-area">
+          <mat-label>Add comment</mat-label>
+          <textarea placeholder="Add comment..." formControlName="comment">
+          </textarea>
+        </mat-form-field>
       </div>
       <div class="row-flex columns-flex">
-        <mat-form-field>
-            <mat-select placeholder="Choose status" formControlName="status">
-                <mat-option>One</mat-option>
-                <mat-option>Two</mat-option>
-                <mat-option>Three</mat-option>
-                <mat-option>Four</mat-option>
-                <mat-option>Five</mat-option>
-            </mat-select>
+        <mat-form-field class="form-control">
+          <mat-select placeholder="Choose status" formControlName="status">
+            <mat-option>One</mat-option>
+            <mat-option>Two</mat-option>
+            <mat-option>Three</mat-option>
+            <mat-option>Four</mat-option>
+            <mat-option>Five</mat-option>
+          </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field class="form-control" appearance="fill">
           <mat-label>Choose end date</mat-label>
-          <input placeholder="Choose date" formControlName="end_date" matInput [matDatepicker]="picker" />
+          <input
+            placeholder="Choose date"
+            formControlName="end_date"
+            matInput
+            [matDatepicker]="picker"
+          />
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matSuffix
@@ -52,23 +67,20 @@
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <mat-form-field>
-          <mat-label>Add comment</mat-label>
-          <textarea placeholder="Add comment..." formControlName="comment"> </textarea>
-        </mat-form-field>
-      
       </div>
     </div>
     <div class="row-flex">
-        <button
-          mat-raised-button
-          type="submit"
-          class="btn blue-button"
-          [disabled]="!checkValidation()"
-        >
-          Save
-        </button>
-        <button class="btn" mat-button><a routerLink="/projects"> Cancel </a></button>
+      <button
+        mat-raised-button
+        type="submit"
+        class="btn blue-button"
+        [disabled]="!checkValidation()"
+      >
+        Save
+      </button>
+      <button class="btn" mat-button>
+        <a routerLink="/projects"> Cancel </a>
+      </button>
     </div>
   </div>
 </form>
