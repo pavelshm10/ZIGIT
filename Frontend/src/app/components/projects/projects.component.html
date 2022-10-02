@@ -1,0 +1,60 @@
+<div class="page-navbar">
+  <button mat-fab class="add-btn" (click)="addProject()">
+    <mat-icon class="add-icon">add</mat-icon>
+  </button>
+</div>
+<table
+  mat-table
+  class="table"
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="flag">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <img *ngIf="element.red_flag"  class="flag-img" src='assets/images/red-flag.jpg' />
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="site_name">
+    <th mat-header-cell *matHeaderCellDef>Site Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.site_name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="end_date">
+    <th mat-header-cell *matHeaderCellDef>End Date</th>
+    <td mat-cell *matCellDef="let element">{{ element.end_date }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="img_url">
+    <th mat-header-cell *matHeaderCellDef class="image-column">Image</th>
+    <td mat-cell *matCellDef="let element" class="image-column">
+      <img class="project-img" [src]="element.img_url" />
+      <!-- <img *ngIf="element.url === null" src="assets/images/image.svg" /> -->
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="comment">
+    <th mat-header-cell *matHeaderCellDef>Comment</th>
+    <td mat-cell *matCellDef="let element" matTooltip="test">
+      {{
+        element.comment.length <= 10
+          ? element.comment
+          : element.comment.substring(0, 10) + "..."
+      }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

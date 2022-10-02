@@ -1,0 +1,36 @@
+.page-navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    margin: 0 20px;
+    .add-btn{
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        position: relative;
+        top: -1px;
+        background-color: #225c73;
+        color: white;
+    }
+    .add-icon{
+        margin:auto;
+        line-height: 0.5;
+    }
+}
+
+.mat-table{
+    width: 100%;
+    .td.image-column {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .project-img{
+        width: 70px;
+        height: 70px;
+    }
+    .flag-img{
+        width: 50px;
+        height: 50px;
+    }
+}

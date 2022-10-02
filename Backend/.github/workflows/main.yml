@@ -1,0 +1,61 @@
+name: SafeSchool server dev CI/CD pipeline
+
+on:
+    push:
+        branches:
+            - develop
+
+jobs:
+    buildAndTest:
+        name: CI Pipeline
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: ["12.x"]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            # Initialize Node.js
+            - name: Install Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            # Install project dependencies, test and build
+            - name: Install dependencies
+              run: npm install
+            - name: Run build
+              run: npm run build
+
+            # generate deploy package in a zip file
+            - name: Generate deployment package
+              run: zip -r deploy.zip * ".platform" -x "node_modules"
+
+            - name: Get timestamp
+              uses: gerred/actions/current-time@master
+              id: current-time
+
+            - name: Run string replace
+              uses: frabert/replace-string-action@master
+              id: format-time
+              with:
+                  pattern: '[:\.]+'
+                  string: "${{ steps.current-time.outputs.time }}"
+                  replace-with: "-"
+                  flags: "g"
+
+              # Deploy to elastic beanstalk:
+            - name: Beanstalk Deploy for app
+              uses: einaregilsson/beanstalk-deploy@v10
+              with:
+                  aws_access_key: ${{secrets.AWS_ACCESS_SAFE_SCHOOL_SERVER_KEY_ID}}
+                  aws_secret_key: ${{secrets.AWS_SECRET_ACCESS_SAFE_SCHOOL_SERVER_KEY}}
+                  application_name: "Safe-School"
+                  environment_name: "Development"
+                  region: "eu-west-1"
+                  version_label: "safe-school-server-${{ steps.format-time.outputs.replaced }}"
+                  deployment_package: deploy.zip
+
+            - name: Deployed!
+              run: echo App deployed to ELB

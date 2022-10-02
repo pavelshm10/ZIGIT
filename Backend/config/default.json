@@ -1,0 +1,36 @@
+{
+	"local": {
+		"AWSCognito": {
+			"name": "safeschool-users-dev",
+			"userPoolId": "eu-west-1_szOvrJRjD",
+			"clientId": "4eh6mmt1rn19k4bu9bp68sa64k"
+		},
+		"AWSBucket": {
+			"name": "safe-school-vod-dev",
+			"region": "eu-west-1"
+		},
+		"CloudFront": {
+			"url": "https://d3u1ym8fmd9frl.cloudfront.net/"
+		},
+		"Security": {
+			"AllowedOrigins": ["http://localhost:4200", "localhost:4200"]
+		}
+	},
+	"development": {
+		"AWSCognito": {
+			"name": "safeschool-users-dev",
+			"userPoolId": "eu-west-1_szOvrJRjD",
+			"clientId": "4eh6mmt1rn19k4bu9bp68sa64k"
+		},
+		"AWSBucket": {
+			"name": "safe-school-vod-dev",
+			"region": "eu-west-1"
+		},
+		"CloudFront": {
+			"url": "https://d3u1ym8fmd9frl.cloudfront.net/"
+		},
+		"Security": {
+			"AllowedOrigins": ["http://localhost:4200", "localhost:4200", "http://localhost:4000", "localhost:4000","https://develop.d3tcgl01o7bggh.amplifyapp.com"]
+		}
+	}
+}
