@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Project } from 'src/app/types/project.interface';
 
 const ELEMENT_DATA: Project[] = [
@@ -64,7 +65,7 @@ export class ProjectsComponent implements OnInit {
   ];
   dataSource = ELEMENT_DATA;
   formatData:any = [];
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
     this.updateData();
@@ -72,8 +73,6 @@ export class ProjectsComponent implements OnInit {
   }
 
   updateData(){
-    
-    var today = new Date();
     ELEMENT_DATA.map((item) => {
       const project = {
         name: item.name,
@@ -82,7 +81,7 @@ export class ProjectsComponent implements OnInit {
         img_url: item.img_url,
         comment: item.comment,
         end_date: this.formatDate(item.end_date),
-        red_flag: item.end_date < today && item.status ? true : false
+        red_flag: item.end_date < new Date() && item.status ? true : false
       };
       this.formatData.push(project);
     }); 
@@ -100,5 +99,8 @@ export class ProjectsComponent implements OnInit {
     return num.toString().padStart(2, '0');
   }
 
-  addProject() {}
+  addProject() {
+    console.log('add');
+    this.router.navigate(["/projects/add"]);
+  }
 }

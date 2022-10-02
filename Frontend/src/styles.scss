@@ -8,4 +8,19 @@ body{
 
 .columns-flex{
     display: flex;
+    flex-direction: column;
 }
+
+.margin-left-auto {
+    margin-left: auto !important;
+}
+
+.margin-30{
+    margin: 30px;
+}
+
+.btn{
+    margin-right: 20px !important;
+    margin-top: 40px !important;
+}
+  

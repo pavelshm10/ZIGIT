@@ -1,1 +1,74 @@
-<p>add-project works!</p>
+<form
+  [formGroup]="projectForm"
+  (submit)="submit()"
+  class="deprecated-form-layout select-label-font-size-16"
+>
+  <div class="margin-30">
+    <h2 mat-dialog-title class="row-flex">
+      <span class="title">Add Project</span>
+    </h2>
+    <div class="deprecated-two-columns">
+      <div class="row-flex columns-flex">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="name"
+            placeholder="Add project name"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Site map</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="site_name"
+            placeholder="Add site name"
+          />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Add image</mat-label>
+            <input  placeholder="Add image" type="text" matInput formControlName="img_url" />
+          </mat-form-field>
+      </div>
+      <div class="row-flex columns-flex">
+        <mat-form-field>
+            <mat-select placeholder="Choose status" formControlName="status">
+                <mat-option>One</mat-option>
+                <mat-option>Two</mat-option>
+                <mat-option>Three</mat-option>
+                <mat-option>Four</mat-option>
+                <mat-option>Five</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Choose end date</mat-label>
+          <input placeholder="Choose date" formControlName="end_date" matInput [matDatepicker]="picker" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Add comment</mat-label>
+          <textarea placeholder="Add comment..." formControlName="comment"> </textarea>
+        </mat-form-field>
+      
+      </div>
+    </div>
+    <div class="row-flex">
+        <button
+          mat-raised-button
+          type="submit"
+          class="btn blue-button"
+          [disabled]="!checkValidation()"
+        >
+          Save
+        </button>
+        <button class="btn" mat-button><a routerLink="/projects"> Cancel </a></button>
+    </div>
+  </div>
+</form>
