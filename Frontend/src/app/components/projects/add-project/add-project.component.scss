@@ -1,45 +1,52 @@
 .deprecated-two-columns {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 15px;
 }
 
 .deprecated-form-layout {
-    font-family: cursive;
-    border: 1.5px solid black;
-    border-radius: 5px;
-    width: 70%;
-    margin: auto;
-    margin-top: 150px;
-    height: 500px;
-    mat-form-field{
-      padding-bottom: 10px;
-      margin-top: 20px;
-      padding-bottom: 10px;
-      width: 300px;
-      border-bottom: 1px solid black;
-    }
-    .date-picker-field{
-        padding: 0px;
-        margin: 0px;
-        border-bottom: 1px solid black;
-      }
-    .text-area{
-        margin-top: 50px;
-        width: 300px;
-    }
-    .comment-btn{
-        background-color: white;
-    }
-    .blue-button{
-        background-color: #225c73;
-        color: white;
-    }  
+  font-family: cursive;
+  border: 1.5px solid black;
+  border-radius: 5px;
+  width: 70%;
+  margin: auto;
+  margin-top: 150px;
+  height: 500px;
+  mat-form-field {
+    padding-bottom: 10px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    width: 300px;
+    border-bottom: 1px solid black;
   }
-
-  .mat-datepicker-content .mat-calendar{
-    margin: auto !important;
+  .date-picker-field {
+    padding: 0px;
+    margin: 0px;
+    border-bottom: 1px solid black;
+  }
+  .text-area {
+    margin-top: 50px;
+    width: 300px;
+  }
+  .comment-btn {
+    background-color: white;
+    text-align: left;
+    margin-top: 10px !important;
+  }
 }
 
+.mat-datepicker-content .mat-calendar {
+  margin: auto !important;
+}
 
+.mat-calendar-body-cell-container{
+  height: 50px !important;
+  width: 50px !important;
+}
 
+.mat-checkbox .mat-checkbox-frame {
+  transform: scale(2);
+  width: 300px;
+}
+
+mat-checkbox ::ng-deep .mat-checkbox-background {width: 30px;height: 30px;}

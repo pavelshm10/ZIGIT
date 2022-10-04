@@ -1,16 +1,19 @@
-<form>
-  <mat-form-field class="text-area">
-    <mat-label>Add comment</mat-label>
-    <textarea placeholder="Add comment..." formControlName="comment">
-    </textarea>
-  </mat-form-field>
-  <button
-    (click)="saveComment()"
-    mat-raised-button
-    type="submit"
-    class="btn blue-button"
-    [disabled]="!comment"
-  >
-    Save
-  </button>
-</form>
+<div class="overlay font-cursive">
+  <form class="modal column-flex">
+    <button
+      mat-icon-button
+      type="button"
+      mat-dialog-close
+      class="margin-left-auto close-btn"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="margin-left-50">
+      <h2>Add Comment...</h2>
+      <textarea class="text-area" [formControl]="comment"></textarea>
+      <button (click)="saveComment()" mat-raised-button class="btn blue-button">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

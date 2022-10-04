@@ -1,6 +1,5 @@
 <form
   [formGroup]="projectForm"
-  (submit)="submit()"
   class="deprecated-form-layout select-label-font-size-16"
 >
   <div class="margin-30">
@@ -8,49 +7,43 @@
       <span class="title">Add Project</span>
     </h2>
     <div class="deprecated-two-columns">
-      <div class="row-flex columns-flex">
-        <mat-form-field class="form-control">
-          <mat-label for="name">Name</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="name"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-control">
-          <mat-label>Site map</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="site_name"
-            placeholder="Add site name"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-control">
-          <mat-label>Add image</mat-label>
-          <input
-            placeholder="Add image"
-            type="text"
-            matInput
-            formControlName="img_url"
-          />
-        </mat-form-field>
-        <button mat-button class="btn comment-btn" (click)="addComment()"><b>Add comment +</b></button>
+      <div class="columns-flex">
+        <input
+          class="input"
+          type="text"
+          matInput
+          formControlName="name"
+          placeholder="Name"
+        />
+        <input
+          matInput
+          class="input"
+          type="text"
+          formControlName="site_name"
+          placeholder="Site Name"
+        />
+        <input
+          matInput
+          class="input"
+          type="text"
+          formControlName="img_url"
+          placeholder="Image Url"
+        />
+        <div>
+          <button
+            mat-raised-button
+            class="btn comment-btn"
+            (click)="addComment()"
+          >
+            <b>Add comment +</b>
+          </button>
+        </div>
       </div>
-      <div class="row-flex columns-flex">
-        <mat-form-field class="form-control">
-          <mat-select placeholder="Choose status" formControlName="status">
-            <mat-option *ngFor="let item of statusList" [value]="item">{{item}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="date-picker-field" appearance="fill">
-          <!-- <mat-label>Project end date</mat-label> -->
-          <input
-            placeholder="Project end date"
-            formControlName="end_date"
-            matInput
-            [matDatepicker]="picker"
-          />
+
+      <div class="columns-flex">
+        <mat-form-field>
+          <!-- <mat-label>Choose a date</mat-label> -->
+          <input matInput [matDatepicker]="picker" />
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matSuffix
@@ -58,6 +51,13 @@
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        <!-- <div  class="checkbox"> -->
+          <mat-checkbox
+          class="checkbox"
+          [checked]="flag"
+        >
+        </mat-checkbox>
+        <!-- </div> -->
       </div>
     </div>
     <div class="row-flex">
@@ -65,7 +65,7 @@
         mat-raised-button
         type="submit"
         class="btn blue-button"
-        [disabled]="!checkValidation()"
+        (click)="submit()"
       >
         Save
       </button>
@@ -75,3 +75,6 @@
     </div>
   </div>
 </form>
+<!-- <div class="dialog">
+  <button mat-raised-button (click)="showDialog()" color="primary">Show Dialog</button>
+</div> -->

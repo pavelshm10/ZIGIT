@@ -1,39 +1,69 @@
-body{
-    margin: 0px;
+body {
+  margin: 0px;
 }
 
-.row-flex{
-    display: flex;
+.row-flex {
+  display: flex;
 }
 
-.columns-flex{
-    display: flex;
-    flex-direction: column;
+.column-flex {
+  display: flex;
+  flex-direction: column;
 }
 
 .margin-left-auto {
-    margin-left: auto !important;
+  margin-left: auto !important;
 }
 
-.margin-30{
-    margin: 30px;
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  opacity: 3;
+  background-color: lightgrey;
+  display: flex;
 }
 
-.btn{
-    margin-right: 20px !important;
-    margin-top: 20px !important;
-    width: 150px;
-    cursor: pointer !important;
+.margin-30 {
+  margin: 30px;
 }
 
-.font-cursive{
-    font-family: cursive;
+.input{
+  // border: none;
+  border-bottom: 1px solid black !important ;
+  width: 300px !important;
+  margin-bottom: 30px !important;
 }
 
-mat-calendar{
-    margin: auto !important;
-    background-color: 'buttonface' !important
+.input{
+  border: none;
+}
+
+.margin-left-50 {
+  margin-left: 50px;
+}
+
+.btn {
+  margin-right: 20px !important;
+  margin-top: 20px !important;
+  width: 150px;
+  cursor: pointer !important;
+}
+
+.font-cursive {
+  font-family: cursive;
+}
+
+.blue-button{
+  background-color: #225c73 !important;
+  color: white;
+}  
+
+mat-calendar {
+  margin: auto !important;
+  background-color: "buttonface" !important
     ;
 }
-
-  

@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { MATERIAL_MODULES } from './modules/material-modules';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 export const reducers: ActionReducerMap<States> = {
   projects: projectsReducer,
@@ -60,5 +61,6 @@ export const effects = [AuthEffects, ProjectEffects];
   providers: [],
   bootstrap: [AppComponent],
   exports: [...MATERIAL_MODULES],
+  entryComponents: [ModalAddCommentComponent]
 })
 export class AppModule {}

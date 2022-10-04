@@ -1,11 +1,4 @@
-// // import bodyParser from "body-parser";
 // import config from "./../config/default.json";
-// import cors from "cors";
-// import express from "express";
-// import expressValidator from "express-validator";
-// // import helmet from "helmet";
-// import ApiRoutes from "./api/routes";
-// export {};
 const cors = "cors";
 const express = require('express')
 const app = express()
@@ -14,6 +7,8 @@ const dotenv = require("dotenv");
 const db= "./db/mysql-init";
 var mysql = require('mysql');
 dotenv.config();
+
+// app.use(cors({ credentials: true, origin:['http://localhost:3001/']}));
 
 let connection = mysql.createConnection({
   host: 'localhost',

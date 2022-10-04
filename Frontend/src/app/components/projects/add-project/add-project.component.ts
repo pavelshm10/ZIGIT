@@ -3,18 +3,29 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { first } from 'rxjs';
+import { ConnectableObservable, first } from 'rxjs';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { customValidatorRequired } from 'src/app/utils/validators';
 import { ModalAddCommentComponent } from '../add-comment/modal-add-comment.component';
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
   styleUrls: ['./add-project.component.scss'],
 })
+
+// export class DatepickerCustomHeaderExample {
+//   exampleHeader = ExampleHeader;
+// }
+
 export class AddProjectComponent implements OnInit {
-  statusList=['Active', 'Not Active'];
+  statusList = ['Active', 'Not Active'];
+  modalOpen:boolean=false;
+  flag:boolean=true;
   projectForm = new FormGroup({
     name: new FormControl('', [customValidatorRequired]),
     site_name: new FormControl('', [customValidatorRequired]),
@@ -23,54 +34,32 @@ export class AddProjectComponent implements OnInit {
     comment: new FormControl('', [customValidatorRequired]),
     img_url: new FormControl('', [customValidatorRequired]),
   });
+  constructor(private store: Store, private matDialog: MatDialog) {}
 
-  constructor(
-    private store: Store,
-    private changeDetectorRef: ChangeDetectorRef,
-    private matDialog: MatDialog,
-  ) {}
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   checkValidation() {
     return false;
   }
 
   addComment() {
+    this.modalOpen=true;
     this.matDialog
-    .open(ModalAddCommentComponent, {
-      width: '820px',
-      data: {
-        title: 'Add comment',
-        name: 'add-comment',
-      },
-    })
-    .afterClosed()
-    .pipe(first())
-    .subscribe((data) => {
-      if (data) {
-        // this.projectForm.co.setValue=data;
-        // this.store.dispatch(new EditText({...data, id: text.id}));
-      }
-    });
-    // this.matDialog
-    //   .open(ModalAddCommentComponent, {
-    //     width: '820px',
-    //     data: {
-    //       title: 'Add New Text',
-    //       name: 'add',
-    //     },
-    //   })
-    //   .afterClosed()
-    //   .pipe(first())
-    //   .subscribe((date) => {
-        
-    //   });
+      .open(ModalAddCommentComponent, {
+      })
+      .afterClosed()
+      .pipe(first())
+      .subscribe((data) => {
+        if (data) {
+          console.log('comment ', data.value);
+          const {name,site_name,status,img_url,comment,end_date}=this.projectForm.value;
+        }
+      });
   }
 
   submit() {
-    console.log("submit")
+    const {name,site_name,img_url,comment,end_date,status} = this.projectForm.value;
+    console.log("date ",end_date);
     // if (!this.isEdit) {
     //   this.textData = this.textService.getTexts();
     // } else {
