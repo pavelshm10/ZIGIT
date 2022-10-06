@@ -3,7 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { createFeatureSelector, Store } from '@ngrx/store';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Project } from 'src/app/types/project.interface';
+// import * as selectors from '../selectors/prijects.selector';
 
 const ELEMENT_DATA: Project[] = [
   {
@@ -54,6 +57,7 @@ const ELEMENT_DATA: Project[] = [
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
+  // $projects: Observable<Project[]>;
   displayedColumns: string[] = [
     'flag',
     'name',
@@ -63,15 +67,27 @@ export class ProjectsComponent implements OnInit {
     'img_url',
     'comment',
   ];
-  dataSource= new MatTableDataSource(ELEMENT_DATA); 
-  formatData:any = [];
-  constructor(private matDialog: MatDialog, private router: Router) {}
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  formatData: any = [];
+  private unsubscribe$ = new Subject();
+  constructor(
+    private matDialog: MatDialog,
+    private router: Router,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
     this.updateData();
+    // this.store
+    //   .select('projects','projects')
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe((projects) => {
+    //     // this.dataSource = projects;
+    //     // this.updateTableData();
+    //   });
   }
 
-  updateData(){
+  updateData() {
     ELEMENT_DATA.map((item) => {
       const project = {
         name: item.name,
@@ -80,10 +96,10 @@ export class ProjectsComponent implements OnInit {
         img_url: item.img_url,
         comment: item.comment,
         end_date: this.formatDate(item.end_date),
-        red_flag: item.end_date < new Date() && item.status ? true : false
+        red_flag: item.end_date < new Date() && item.status ? true : false,
       };
       this.formatData.push(project);
-    }); 
+    });
     this.dataSource = this.formatData;
   }
 
@@ -100,7 +116,6 @@ export class ProjectsComponent implements OnInit {
   }
 
   addProject() {
-    console.log('add');
-    this.router.navigate(["/projects/add"]);
+    this.router.navigate(['/projects/add']);
   }
 }

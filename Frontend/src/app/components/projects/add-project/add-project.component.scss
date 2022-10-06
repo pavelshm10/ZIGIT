@@ -8,17 +8,10 @@
   font-family: cursive;
   border: 1.5px solid black;
   border-radius: 5px;
-  width: 70%;
+  width: 1000px;
   margin: auto;
   margin-top: 150px;
   height: 500px;
-  mat-form-field {
-    padding-bottom: 10px;
-    margin-top: 20px;
-    padding-bottom: 10px;
-    width: 300px;
-    border-bottom: 1px solid black;
-  }
   .date-picker-field {
     padding: 0px;
     margin: 0px;
@@ -31,22 +24,134 @@
   .comment-btn {
     background-color: white;
     text-align: left;
-    margin-top: 10px !important;
+    margin-top: 20px !important;
+  }
+
+  .date-imput {
+    width: 420px !important;
   }
 }
 
-.mat-datepicker-content .mat-calendar {
-  margin: auto !important;
+.submit-btn{
+    &:disabled {
+      background-color: gray !important;
+    }
 }
 
-.mat-calendar-body-cell-container{
-  height: 50px !important;
-  width: 50px !important;
+.comment-container{
+  border: none;
+  margin-top: 10px;
 }
 
-.mat-checkbox .mat-checkbox-frame {
-  transform: scale(2);
-  width: 300px;
+// .date-picker{
+::ng-deep {
+  // .cdk-overlay-container :first-of-type {
+  //   // position: fixed;
+  //   // z-index: 1000;
+  // }
+  .cdk-overlay-backdrop:first-of-type {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 1;
+  }
+  .cdk-overlay-connected-position-bounding-box {
+    position: absolute;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    width: 1px !important;
+    height: 1px !important;
+  }
+
+  .mat-datepicker-content-container {
+    border-radius: 5px;
+    // border: 2px solid #225c73
+  }
+
+  .cdk-overlay-pane:first-of-type {
+    position: absolute;
+    pointer-events: auto;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .mat-calendar-table-header,
+  .mat-datepicker-close-button {
+    display: none !important;
+  }
+
+  .mat-calendar-body-cell-content {
+    top: 5%;
+    left: 5%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 90%;
+    height: 90%;
+    line-height: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 999px;
+  }
+
+  .mat-calendar-body-selected {
+    background-color: #225c73;
+    color: black !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    position: absolute !important;
+  }
+
+  .mat-calendar-body-cell-content,
+  .mat-date-range-input-separator {
+    color: #000000de;
+    border-color: transparent;
+  }
+
+  .mat-calendar-body-cell {
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    text-align: center;
+    outline: none;
+    font-family: inherit;
+    margin: 0;
+  }
+  .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    border-color: #00000061;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-mat-checkbox ::ng-deep .mat-checkbox-background {width: 30px;height: 30px;}
+::ng-deep {
+  .mat-checkbox-checkmark,
+  .mat-checkbox-frame {
+    display: none;
+  }
+  .mat-checkbox-input{
+    margin-left: 10px;
+  }
+}

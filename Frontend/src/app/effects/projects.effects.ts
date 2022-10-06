@@ -25,11 +25,9 @@ export class ProjectEffects {
   getProjects$ = this.actions$.pipe(
     ofType(ProjectActionTypes.GetProjects),
     map(action=> (action as GetProjects).payload),
-    switchMap((payload) => {
-      const filter = payload.filter;
-      console.log("in");
+    switchMap(() => {
       return this.httpClient
-        .get(`${environment.baseServerUrl}/get-projects?filter=${filter}`)
+        .get(`${environment.baseServerUrl}/projects`)
         .pipe(
           map((response) => {
             return new GetProjectsSuccess(
@@ -65,7 +63,7 @@ export class ProjectEffects {
         .pipe(
           map((response) => {
             this.toasterService.success({
-              content: 'New text was added successfully',
+              content: 'New project was added successfully',
             });
             this.store.dispatch(new GetProjects({filter:this.coreService.getFilter()}));
             return new AddProjectSuccess();

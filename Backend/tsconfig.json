@@ -13,6 +13,6 @@
 		"typeRoots": ["./src/types", "./node_modules/@types"],
 		"esModuleInterop": true
 	},
-	"include": ["src/**/*.ts", "material.module.ts"],
+	"include": ["src/**/*.ts", "material.module.ts", "src/server.js", "src/api/routes.js", "src/db/mysql-init.js"],
 	"exclude": ["node_modules", "src/types"]
 }

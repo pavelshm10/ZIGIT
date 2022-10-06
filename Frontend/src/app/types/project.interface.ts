@@ -2,7 +2,11 @@ export interface Project{
     name: string,
     site_name: string,
     status: boolean,
-    end_date: Date,
+    end_date: any,
     img_url: string,
     comment: string
 }
+
+export interface ProjectsState {
+    projects: Project[];
+  } 

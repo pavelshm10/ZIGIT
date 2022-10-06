@@ -7,74 +7,81 @@
       <span class="title">Add Project</span>
     </h2>
     <div class="deprecated-two-columns">
-      <div class="columns-flex">
-        <input
-          class="input"
-          type="text"
-          matInput
-          formControlName="name"
-          placeholder="Name"
-        />
-        <input
-          matInput
-          class="input"
-          type="text"
-          formControlName="site_name"
-          placeholder="Site Name"
-        />
-        <input
-          matInput
-          class="input"
-          type="text"
-          formControlName="img_url"
-          placeholder="Image Url"
-        />
-        <div>
-          <button
-            mat-raised-button
-            class="btn comment-btn"
-            (click)="addComment()"
-          >
-            <b>Add comment +</b>
-          </button>
+      <div class="column-flex">
+        <div class="input-container">
+          <mat-label class="mat-label">Name</mat-label>
+          <mat-form-field class="form-control" appearance="fill">
+            <input class="input" type="text" matInput formControlName="name" />
+          </mat-form-field>
+        </div>
+        <div class="input-container">
+          <mat-label class="mat-label">Site Name</mat-label>
+          <mat-form-field class="form-control" appearance="fill">
+            <input
+              class="input"
+              type="text"
+              matInput
+              formControlName="site_name"
+            />
+          </mat-form-field>
+        </div>
+        <div class="input-container">
+          <mat-label class="mat-label">Upload project image</mat-label>
+          <input
+            type="file"
+            id="avatar"
+            (change)="fileUpload($event)"
+            name="avatar"
+            accept="image/png,
+          image/jpeg, image/webp"
+          />
         </div>
       </div>
 
-      <div class="columns-flex">
-        <mat-form-field>
-          <!-- <mat-label>Choose a date</mat-label> -->
-          <input matInput [matDatepicker]="picker" />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <!-- <div  class="checkbox"> -->
-          <mat-checkbox
-          class="checkbox"
-          [checked]="flag"
-        >
-        </mat-checkbox>
-        <!-- </div> -->
+      <div class="column-flex">
+        <div class="input-container date-imput">
+          <mat-label class="mat-label">Project finish date</mat-label>
+          <mat-form-field class="form-control date-picker" appearance="fill">
+            <input matInput [matDatepicker]="picker"  formControlName="end_date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="input-container">
+          <section class="check-box">
+            <label class="mat-label">Active project </label>
+            <mat-checkbox
+              class="checkbox"
+              (change)="handleChecked($event)"
+              [checked]="status.value"
+              formControlName="status"
+            >
+            </mat-checkbox>
+          </section>
+        </div>
+        <div class="input-container">
+          <button class="btn comment-btn" (click)="addComment()">
+            <b class="font-cursive">Add comment +</b>
+          </button>
+          <input formControlName="comment" class="comment-container font-cursive"/>
+        </div>
       </div>
     </div>
     <div class="row-flex">
       <button
         mat-raised-button
         type="submit"
-        class="btn blue-button"
+        class="btn blue-button font-cursive submit-btn"
         (click)="submit()"
+        
       >
         Save
       </button>
-      <button class="btn" mat-button>
-        <a routerLink="/projects"> Cancel </a>
+      <button class="btn font-cursive" mat-button>
+        <a class="no-decoration" routerLink="/projects"> Cancel </a>
       </button>
     </div>
   </div>
 </form>
-<!-- <div class="dialog">
-  <button mat-raised-button (click)="showDialog()" color="primary">Show Dialog</button>
-</div> -->
+<!-- [disabled]="!projectForm.valid" -->

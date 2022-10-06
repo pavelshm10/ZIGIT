@@ -11,9 +11,7 @@ export enum ProjectActionTypes {
 
 export class GetProjects implements Action {
   readonly type = ProjectActionTypes.GetProjects;
-  constructor(
-    public payload: { filter: string }
-  ) {}
+  constructor(public payload: {}) {}
 }
 export class GetProjectsSuccess implements Action {
   readonly type = ProjectActionTypes.GetProjectsSuccess;
@@ -36,7 +34,7 @@ export class GetProjectsFailure implements Action {
 
 export class AddProject implements Action {
   readonly type = ProjectActionTypes.AddProject;
-  constructor(public payload: []) {}
+  constructor(public payload: any) {}
 }
 
 export class AddProjectSuccess implements Action {
