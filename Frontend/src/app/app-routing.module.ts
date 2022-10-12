@@ -8,9 +8,12 @@ const routes: Routes = [
   {
     path: 'projects',
     component: ProjectsComponent,
+    data: {
+      id: 'projects',
+    },
   },
   {
-    path: 'projects/add',
+    path: 'add-project',
     component: AddProjectComponent,
   },
   { path: 'auth/login', component: LoginComponent },

@@ -14,6 +14,9 @@ import { customValidatorRequired } from 'src/app/utils/validators';
 import { ModalAddCommentComponent } from '../add-comment/modal-add-comment.component';
 import { FileUploader } from 'ng2-file-upload';
 import { AddProject } from 'src/app/actions/projects.actions';
+import { ProjectsService } from 'src/app/services/projects.service';
+import { Project } from 'src/app/types/project.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-project',
@@ -43,7 +46,9 @@ export class AddProjectComponent implements OnInit {
     private store: Store,
     private matDialog: MatDialog,
     private formBuilder: FormBuilder,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private projectService: ProjectsService,
+    private router: Router
   ) {
     // this.projectForm = this.initControls();
   }
@@ -73,31 +78,21 @@ export class AddProjectComponent implements OnInit {
 
   fileUpload(event: any) {
     this.projectForm.get('img_url')?.setValue(event.target.files[0]);
-    this.imageFile=event.target.files[0];
+    this.imageFile = event.target.files[0];
   }
 
   submit() {
     const { name, site_name, img_url, comment, end_date, status } =
       this.projectForm.value;
-    this.store.dispatch(new AddProject(this.projectForm.value));
-    // console.log("file ",this.imageFile);
-    // file_input ? console.log(file_input?.files[0]):''
-    // if (!this.isEdit) {
-    //   this.textData = this.textService.getTexts();
-    // } else {
-    //   const {isActive, labels, name, text, language, type} = this.textsDialogForm.value;
-    //   const data: {[key: string]: number | boolean} = {
-    //     labels: (labels || []).map((item) => ({
-    //       id: item.id,
-    //     })),
-    //     name,
-    //     text,
-    //     typeId: type,
-    //     languageId: language,
-    //     isActive,
-    //   };
-    //   this.textData = data;
-    // // }
-    // this.dialogRef.close(this.textData);
+    const project: Project = {
+      name: name ? name : '',
+      site_name: site_name ? site_name : '',
+      img_url: img_url ? img_url : '',
+      comment: comment ? comment : '',
+      end_date: end_date ? end_date : '',
+      status: status ? status : true,
+    };
+    this.projectService.addProject(project);
+    this.router.navigate(['/projects'])
   }
 }

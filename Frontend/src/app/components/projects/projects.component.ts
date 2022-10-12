@@ -5,51 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { createFeatureSelector, Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { ProjectsService } from 'src/app/services/projects.service';
 import { Project } from 'src/app/types/project.interface';
 // import * as selectors from '../selectors/prijects.selector';
-
-const ELEMENT_DATA: Project[] = [
-  {
-    name: 'proj-1',
-    site_name: 'site-1',
-    status: true,
-    end_date: new Date(88, 6, 1),
-    img_url: 'assets/images/proj_1.jpg',
-    comment: 'comment-1',
-  },
-  {
-    name: 'proj-2',
-    site_name: 'site-2',
-    status: true,
-    end_date: new Date(88, 6, 2),
-    img_url: 'assets/images/proj_2.jpg',
-    comment: 'comment-2',
-  },
-  {
-    name: 'proj-3',
-    site_name: 'site-3',
-    status: true,
-    end_date: new Date(88, 6, 3),
-    img_url: 'assets/images/proj_3.jpg',
-    comment: 'comment-3',
-  },
-  {
-    name: 'proj-4',
-    site_name: 'site-4',
-    status: false,
-    end_date: new Date(88, 6, 4),
-    img_url: 'assets/images/proj_4.jpg',
-    comment: 'comment-4',
-  },
-  {
-    name: 'proj-5',
-    site_name: 'site-5',
-    status: true,
-    end_date: new Date(2022, 10, 10),
-    img_url: 'assets/images/proj_5.jpg',
-    comment: 'comment-5',
-  },
-];
 
 @Component({
   selector: 'app-projects',
@@ -67,14 +25,16 @@ export class ProjectsComponent implements OnInit {
     'img_url',
     'comment',
   ];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  formatData: any = [];
+  dataSource: any = new MatTableDataSource();
   private unsubscribe$ = new Subject();
   constructor(
     private matDialog: MatDialog,
     private router: Router,
-    private store: Store
-  ) {}
+    private store: Store,
+    private projectService: ProjectsService 
+  ) {
+    this.updateData();
+  }
 
   ngOnInit(): void {
     this.updateData();
@@ -88,34 +48,10 @@ export class ProjectsComponent implements OnInit {
   }
 
   updateData() {
-    ELEMENT_DATA.map((item) => {
-      const project = {
-        name: item.name,
-        site_name: item.site_name,
-        status: item.status,
-        img_url: item.img_url,
-        comment: item.comment,
-        end_date: this.formatDate(item.end_date),
-        red_flag: item.end_date < new Date() && item.status ? true : false,
-      };
-      this.formatData.push(project);
-    });
-    this.dataSource = this.formatData;
-  }
-
-  formatDate(date: Date) {
-    return [
-      date.getFullYear(),
-      this.padTo2Digits(date.getMonth() + 1),
-      this.padTo2Digits(date.getDate()),
-    ].join('-');
-  }
-
-  padTo2Digits(num: number) {
-    return num.toString().padStart(2, '0');
+    this.dataSource = this.projectService.getProjects();
   }
 
   addProject() {
-    this.router.navigate(['/projects/add']);
+    this.router.navigate(['/add-project']);
   }
 }
