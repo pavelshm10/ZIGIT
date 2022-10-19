@@ -38,6 +38,20 @@ export class ProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getDataWithService();
+    this.getDataWithNgrx();
+  
+    // this.getData();
+    // this.store
+    //   .select('projects','projects')
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe((projects) => {
+    //     // this.dataSource = projects;
+    //     // this.updateTableData();
+    //   });
+  }
+
+  getDataWithNgrx(){
     this.store.dispatch(new GetProjects());
     this.store
     .select('projects')
@@ -50,17 +64,9 @@ export class ProjectsComponent implements OnInit {
         this.dataSource=data?.projects?.result?.projects;
       }
     });
-    // this.getData();
-    // this.store
-    //   .select('projects','projects')
-    //   .pipe(takeUntil(this.unsubscribe$))
-    //   .subscribe((projects) => {
-    //     // this.dataSource = projects;
-    //     // this.updateTableData();
-    //   });
   }
 
-  async getData() {
+  async getDataWithService() {
     this.projectService.getProjectsApi().subscribe((projects: Result) => {
       console.log("test ",projects.result.projects);
       this.dataSource=projects.result.projects;
