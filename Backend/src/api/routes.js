@@ -5,11 +5,9 @@ router.use(express.json());
 
 //get projects
 router.get("/projects", async (req, res) => {
-	console.log("in projects");
 	var sql = "SELECT * FROM projects";
 	try {
 		const projects = await db(sql);
-
 		return res.send({
 			success: true,
 			result: {

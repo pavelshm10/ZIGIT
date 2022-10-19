@@ -24,7 +24,6 @@ export class ProjectEffects {
   @Effect()
   getProjects$ = this.actions$.pipe(
     ofType(ProjectActionTypes.GetProjects),
-    map(action=> (action as GetProjects).payload),
     switchMap(() => {
       return this.httpClient
         .get(`${environment.baseServerUrl}/projects`)
@@ -65,7 +64,7 @@ export class ProjectEffects {
             this.toasterService.success({
               content: 'New project was added successfully',
             });
-            this.store.dispatch(new GetProjects({filter:this.coreService.getFilter()}));
+            this.store.dispatch(new GetProjects());
             return new AddProjectSuccess();
           }),
           catchError(() => of(new AddProjectFailure()))

@@ -1,5 +1,5 @@
 import { AuthState } from "../reducers/auth.reducer";
-import { ProjectState } from "../reducers/projects.reducer";
+import { ProjectState } from "./project.interface";
 
 
 

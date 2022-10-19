@@ -1,37 +1,20 @@
-import { createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import {
   ProjectActionTypes,
   ProjectsActions,
 } from '../actions/projects.actions';
-import { Project } from '../types/project.interface';
-// import { increment, decrement, reset } from './counter.action';
-
-export interface ProjectState {
-  projects: Project[];
-}
+import { Project, ProjectState } from '../types/project.interface';
 
 export const initialState: ProjectState = {
   projects: [],
 };
 
-export function projectsReducer(
-  state = initialState,
-  action: ProjectsActions
-): ProjectState {
+export function projectsReducer(state = initialState, action: ProjectsActions) {
   switch (action.type) {
     case ProjectActionTypes.GetProjectsSuccess:
       return {
         ...state,
-        projects: action.payload?.map(
-          ({ name, site_name, status, end_date, img_url, comment }) => ({
-            name,
-            site_name,
-            status,
-            end_date,
-            img_url,
-            comment,
-          })
-        ),
+        projects: action.payload,
       };
     default:
       return state;

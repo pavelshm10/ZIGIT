@@ -11,8 +11,8 @@ export enum ProjectActionTypes {
 
 export class GetProjects implements Action {
   readonly type = ProjectActionTypes.GetProjects;
-  constructor(public payload: {}) {}
 }
+
 export class GetProjectsSuccess implements Action {
   readonly type = ProjectActionTypes.GetProjectsSuccess;
   constructor(

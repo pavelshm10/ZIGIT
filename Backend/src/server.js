@@ -9,20 +9,16 @@ var mysql = require('mysql');
 const routes = require('./api/routes');
 const cors = require('cors');
 const con= require('./db/mysql-init')
+const router = express.Router();
 dotenv.config();
 
-// app.use(cors({
-//   origin: ['http://localhost:3000','http://localhost:4200/','*'],
-//   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-// }));
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   // res.setHeader('Access-Control-Allow-Credentials', true);
   next();
   });
-  // console.log();
 // let connection = mysql.createConnection({
 //   host: 'localhost',
 //   user: 'root',
@@ -33,19 +29,38 @@ app.use(function (req, res, next) {
 
 // con.connect(function(err) {
 //   if (err) throw err;
-//   console.log("You connected to DB!");
 //   // var sql = "CREATE TABLE users (user VARCHAR(255), password VARCHAR(255))";
 //   // connection.query(sql, function (err, result) {
 //   //   if (err) throw err;
-//   //   console.log("Table created");
 //   // });
 // });
 
-app.use('/',routes);
-
-// app.get('/projects',routes, (req, res) => {
-//   res.send('Hello World!')
+// app.get('/projects', (req, res) => {
+//   res.send('hello world')
 // })
+
+// router.get("/projects", async (req, res) => {
+// 	var sql = "SELECT * FROM projects";
+//   try {
+// 		// const projects = await db(sql);
+// 		return res.send({
+// 			success: true,
+// 			result: {
+// 				// projects,
+// 			},
+// 		});
+// 	} catch (e) {
+// 		console.error(e);
+//     console.log("error");
+//     return res.status(500).send({
+// 			success: false,
+// 			message: "internal server error",
+// 		});
+// 	}
+// });
+
+
+app.use('/',routes);
 
 app.listen(port, () => {
   console.log(`You listening to port ${port}`)

@@ -5,8 +5,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { createFeatureSelector, Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { GetProjects } from 'src/app/actions/projects.actions';
 import { ProjectsService } from 'src/app/services/projects.service';
 import { Project } from 'src/app/types/project.interface';
+import { Result } from 'src/app/types/response.interface';
+import { States } from 'src/app/types/state.interface';
 // import * as selectors from '../selectors/prijects.selector';
 
 @Component({
@@ -30,14 +33,24 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private matDialog: MatDialog,
     private router: Router,
-    private store: Store,
-    private projectService: ProjectsService 
-  ) {
-    this.updateData();
-  }
+    private store: Store<States>,
+    private projectService: ProjectsService
+  ) {}
 
   ngOnInit(): void {
-    this.updateData();
+    this.store.dispatch(new GetProjects());
+    this.store
+    .select('projects')
+    .pipe(
+      takeUntil(this.unsubscribe$),
+    )
+    .subscribe((data: any) => {
+      console.log("proj ",data?.projects?.result?.projects);
+      if(data){
+        this.dataSource=data?.projects?.result?.projects;
+      }
+    });
+    // this.getData();
     // this.store
     //   .select('projects','projects')
     //   .pipe(takeUntil(this.unsubscribe$))
@@ -47,8 +60,23 @@ export class ProjectsComponent implements OnInit {
     //   });
   }
 
-  updateData() {
-    this.dataSource = this.projectService.getProjects();
+  async getData() {
+    this.projectService.getProjectsApi().subscribe((projects: Result) => {
+      console.log("test ",projects.result.projects);
+      this.dataSource=projects.result.projects;
+    });
+  }
+
+  formatDate(date: Date) {
+    return [
+      date.getFullYear(),
+      this.padTo2Digits(date.getMonth() + 1),
+      this.padTo2Digits(date.getDate()),
+    ].join('-');
+  }
+
+  padTo2Digits(num: number) {
+    return num.toString().padStart(2, '0');
   }
 
   addProject() {

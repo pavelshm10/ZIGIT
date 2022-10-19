@@ -50,9 +50,7 @@ export const effects = [AuthEffects, ProjectEffects];
     ...MATERIAL_MODULES,
     HttpClientModule,
     RouterModule,
-    StoreModule.forRoot(reducers, {
-      runtimeChecks,
-    }),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     BrowserModule,
     FormsModule,
